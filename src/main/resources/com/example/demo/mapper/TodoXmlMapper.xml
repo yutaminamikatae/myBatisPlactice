@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TodoXmlMapper">
+	<resultMap id="todoXmlMap"
+		type="com.example.demo.entity.Todo">
+		<id column="todo_id" property="todoId" />
+		<result column="todo_title" property="todoTitle" />
+		<result column="finished" property="finished" />
+		<result column="created_at" property="createdAt" />
+	</resultMap>
+	<select id="findOne" resultMap="todoXmlMap">
+		SELECT
+		*
+		FROM
+		todo
+		WHERE todo_id = #{todoId}
+	</select>
+
+	<select id="findAll" resultMap="todoXmlMap">
+        SELECT
+            todo_id,
+            todo_title,
+            finished,
+            created_at
+        FROM
+            todo
+    </select>
+
+
+</mapper>
