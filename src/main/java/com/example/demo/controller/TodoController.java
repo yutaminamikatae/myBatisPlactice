@@ -24,26 +24,22 @@ public class TodoController {
 	@Autowired
 	Todo2XmlService todo2XmlService;
 
-
-
 	//１件取得 全件取得　挿入　更新　削除　件数取得
 	//myBatis
 
 	//↓
 
-
 	// １件取得 (1)
 	//curl -X POST http://localhost:8000/todo2/one -H "Content-type: application/json" -d "{\"todoId\":\"1\"}"
 	@RequestMapping(path = "/todo2/one", method = RequestMethod.POST)
-	public Todo2 getTodo(@RequestBody  @Validated Todo2 todo2,BindingResult result) {
+	public Todo2 getTodo(@RequestBody @Validated Todo2 todo2, BindingResult result) {
 
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			throw new RuntimeException();
 		}
 
 		return todo2XmlService.findOne(todo2);
 	}
-
 
 	// 挿入
 	//curl -X POST http://localhost:8000/create -H "Content-type: application/json" -d "{\"todoId\":\"2\",\"todoTitle\":\"def\",\"finished\":\"true\"}"
@@ -63,38 +59,35 @@ public class TodoController {
 
 	// 更新
 	//curl -X POST http://localhost:8000/update -H "Content-type: application/json" -d "{\"todoId\":\"2\",\"todoTitle\":\"ddd\",\"finished\":\"true\"}"
-		@RequestMapping(path = "/update", method = RequestMethod.POST)
-		public void updateTodo(@RequestBody Todo2 todo2) {
-			todo2XmlService.update(todo2);
-		}
+	@RequestMapping(path = "/update", method = RequestMethod.POST)
+	public void updateTodo(@RequestBody Todo2 todo2) {
+		todo2XmlService.update(todo2);
+	}
 
-		// delete
-		//curl -X POST http://localhost:8000/delete -H "Content-type: application/json" -d "{\"todoId\":\"4\"}"
-			@RequestMapping(path = "/delete", method = RequestMethod.POST)
-			public void deleteTodo(@RequestBody Todo2 todo2) {
-				todo2XmlService.delete(todo2);
-			}
+	// delete
+	//curl -X POST http://localhost:8000/delete -H "Content-type: application/json" -d "{\"todoId\":\"4\"}"
+	@RequestMapping(path = "/delete", method = RequestMethod.POST)
+	public void deleteTodo(@RequestBody Todo2 todo2) {
+		todo2XmlService.delete(todo2);
+	}
 
-		//count
-		//curl -X POST http://localhost:8000/count -H "Content-type: application/json"
-		@RequestMapping(path = "/count", method = RequestMethod.POST)
-		public long countTodo() {
-			return todo2XmlService.count();
-		}
+	//count
+	//curl -X POST http://localhost:8000/count -H "Content-type: application/json"
+	@RequestMapping(path = "/count", method = RequestMethod.POST)
+	public long countTodo() {
+		return todo2XmlService.count();
+	}
 
-//
-//
+	//
+	//
 
+	//curl -X POST http://localhost:8000/todo/one -H "Content-type: application/json" -d "{\"todo_id\":\"1\"}"
+	@RequestMapping(path = "/todo/one", method = RequestMethod.POST)
+	public Todo getTodo(@RequestBody Todo todo) {
 
-		//curl -X POST http://localhost:8000/todo/one -H "Content-type: application/json" -d "{\"todo_id\":\"1\"}"
-		@RequestMapping(path = "/todo/one", method = RequestMethod.POST)
-		public Todo getTodo(@RequestBody Todo todo) {
+		// １件取得 (1)
 
-			// １件取得 (1)
-
-			return todoXmlService.findOne(todo);
-		}
-
-
+		return todoXmlService.findOne(todo);
+	}
 
 }
