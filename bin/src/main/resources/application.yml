@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/kadaidb?serverTimezone=JST
+    username: root
+    password: EmptyVergil1997
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: non
+
+server:
+    port: 8000

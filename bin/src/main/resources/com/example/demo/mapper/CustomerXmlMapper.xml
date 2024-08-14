@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CustomerXmlMapper">
+	<resultMap id="customerXmlMap"
+		type="com.example.demo.entity.CustomerEntity">
+		<id column="customercode" property="customercode" />
+		<result column="customername" property="customername" />
+		<result column="adress" property="adress" />
+		<result column="phonenumber" property="phonenumber" />
+		<result column="staffcode" property="staffcode" />
+	</resultMap>
+	<select id="findOne" parameterType="string"
+		resultMap="customerXmlMap">
+		SELECT
+		*
+		FROM
+		customer
+
+		<where>
+			<if test="customercode != null">
+				AND customercode = #{customercode}
+			</if>
+
+			<if test="customername != null">
+				AND customername = #{customername}
+			</if>
+
+			<if test="adress != null">
+				AND adress = #{adress}
+			</if>
+
+			<if test="phonenumber != null">
+				AND phonenumber = #{phonenumber}
+			</if>
+
+			<if test="staffcode != null">
+				AND staffcode = #{staffcode}
+			</if>
+
+		</where>
+	</select>
+</mapper>
